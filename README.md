@@ -14,11 +14,11 @@ See `samples` directory for a pre-parsed User IDs and notations.
 
 You can try the samples by using:
 
-    cat samples/reddit-identity.json | npx distributed-ids
+    cat samples/reddit-identity.json | node index.js
 
 Verification of real keys:
 
-    gpg --export D8E8F074 | npx distributed-ids
+    gpg --export D8E8F074 | node index.js
 
 ## Identities
 
