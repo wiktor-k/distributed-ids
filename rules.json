@@ -1,0 +1,115 @@
+[
+    {
+        "notation": "timestamp+bitcoin-transaction@metacode.biz",
+        "verification": [
+            "https://blockexplorer.com/api/tx/",
+            ["load", "VALUE"],
+            ["concat"],
+            ["fetch", "json"],
+            ["extract", "vout"],
+            [
+                "any", [
+                    ["extract", ["scriptPubKey", "asm"]],
+                    "OP_RETURN ",
+                    ["load", "FINGERPRINT"],
+                    ["concat"],
+                    ["equals"]
+                ]
+            ]
+        ]
+    },
+    {
+        "notation": "proofs+github@metacode.biz",
+        "verification": [
+            "https://api.github.com/gists/",
+            ["load", "VALUE"],
+            ["concat"],
+            ["fetch", "json"],
+            ["duplicate"],
+            ["extract", ["owner", "html_url"]],
+            ["load", "USERID"],
+            ["equals"],
+            ["verify"],
+            ["extract", "files"],
+            ["any", [
+                ["extract", "content"],
+                "[Verifying my OpenPGP key: openpgp4fpr:",
+                ["load", "FINGERPRINT"],
+                ["concat"],
+                "]",
+                ["concat"],
+                ["contains"]
+            ]]
+        ]
+    },
+    {
+        "notation": "proofs+hn@metacode.biz",
+        "verification": [
+            "https://news.ycombinator.com/user?id=",
+            ["load", "VALUE"],
+            ["concat"],
+            ["duplicate"],
+            ["load", "USERID"],
+            ["equals"],
+            ["verify"],
+            ["fetch", "text"],
+            "[Verifying my OpenPGP key: openpgp4fpr:",
+            ["load", "FINGERPRINT"],
+            ["concat"],
+            "]",
+            ["concat"],
+            ["contains"]
+        ]
+    },
+    {
+        "notation": "proofs+twitter@metacode.biz",
+        "verification": [
+            "https://api.twitter.com/1.1/statuses/show.json?id=",
+            ["load", "VALUE"],
+            ["concat"],
+            ["fetch", "json", "put your twitter oauth token here"],
+            ["duplicate"],
+            ["extract", ["user", "screen_name"]],
+            "https://twitter.com/",
+            ["swap"],
+            ["concat"],
+            ["load", "USERID"],
+            ["equals"],
+            ["verify"],
+            ["extract", "text"],
+            "[Verifying my OpenPGP key: openpgp4fpr:",
+            ["load", "FINGERPRINT"],
+            ["concat"],
+            "]",
+            ["concat"],
+            ["contains"]
+        ]
+    },
+    {
+        "notation": "proofs+reddit@metacode.biz",
+        "verification": [
+            "https://www.reddit.com/r/KeybaseProofs/comments/",
+            ["load", "VALUE"],
+            ["concat"],
+            ".json",
+            ["concat"],
+            ["fetch", "json"],
+            ["extract", [0, "data", "children"]],
+            ["any", [
+                ["duplicate"],
+                ["extract", ["data", "author"]],
+                "https://reddit.com/user/",
+                ["swap"],
+                ["concat"],
+                ["load", "USERID"],
+                ["equals"],
+                ["verify"],
+                ["extract", ["data", "selftext"]],
+                "\"fingerprint\": \"",
+                ["load", "FINGERPRINT"],
+                ["concat"],
+                ["contains"]
+            ]]
+        ]
+    }
+]

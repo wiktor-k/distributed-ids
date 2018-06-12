@@ -1,0 +1,23 @@
+{
+  "name": "distributed-ids",
+  "version": "0.1.0",
+  "description": "Verifies distributed identities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openpgp"],
+  "author": "Wiktor Kwapisiewicz <wiktor@metacode.biz>",
+  "license": "APL",
+  "dependencies": {
+    "openpgp": "^3.0.11"
+  },
+  "bin": "./index.js" ,
+  "bugs": {
+    "url": "https://github.com/wiktor-k/distributed-ids/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wiktor-k/distributed-ids"
+  }
+}
