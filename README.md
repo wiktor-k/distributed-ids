@@ -108,3 +108,15 @@ Notation key: `proofs+activitypub@metacode.biz`
 Notation value: Domain name, must be the same as in `acct` URI.
 
 Example: https://mastodon.social/@wiktor
+
+### DNS binding
+
+This check verifies if there is a `TXT` record with contents `openpgp4fpr:fingerprint`.
+
+User ID: `dns` URI scheme, e.g. `dns:metacode.biz`
+
+Notation key: `proofs+activitypub@metacode.biz`
+
+Notation value: Domain name, must be the same as in `dns` URI.
+
+Example: https://dns.google.com/resolve?name=metacode.biz&type=TXT

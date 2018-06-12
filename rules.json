@@ -170,5 +170,38 @@
                 ]]
             ]]
         ]
+    },
+    {
+        "notation": "proofs+dns@metacode.biz",
+        "verification": [
+            "dns:",
+            ["load", "VALUE"],
+            ["concat"],
+            ["load", "USERID"],
+            ["equals"],
+            ["verify"],
+            "https://dns.google.com/resolve?type=TXT&dnssec=true&name=",
+            ["load", "VALUE"],
+            ["concat"],
+            ["fetch", "json"],
+            ["duplicate"],
+            ["extract", "Status"],
+            0,
+            ["equals"],
+            ["verify"],
+            ["duplicate"],
+            ["extract", "AD"],
+            ["verify"],
+            ["extract", "Answer"],
+            ["any", [
+                ["extract", "data"],
+                "\"openpgp4fpr:",
+                ["load", "FINGERPRINT"],
+                ["concat"],
+                "\"",
+                ["concat"],
+                ["equals"]
+            ]]
+        ]
     }
 ]
