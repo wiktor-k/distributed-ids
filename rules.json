@@ -111,5 +111,20 @@
                 ["contains"]
             ]]
         ]
+    },
+    {
+        "notation": "proofs+domain@metacode.biz",
+        "verification": [
+            "https://",
+            ["load", "VALUE"],
+            ["concat"],
+            "/.well-known/keybase.txt",
+            ["concat"],
+            ["fetch", "text"],
+            "\"fingerprint\": \"",
+            ["load", "FINGERPRINT"],
+            ["concat"],
+            ["contains"]
+        ]
     }
 ]

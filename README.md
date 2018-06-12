@@ -84,3 +84,15 @@ Notation key: `timestamp+bitcoin-transaction@metacode.biz`
 Notation value: Bitcoin transaction ID in hex that contains the fingerprint in one of the outputs (using `OP_RETURN`).
 
 Example: https://blockexplorer.com/tx/afcb092c5ca6409526d18ae9cf22d3b55d37e723eb1b74e3f84f7e6b052a162a
+
+### Domain name
+
+This check verifies control over given web site using Keybase's well-known file.
+
+User ID: any, only fingerprint is checked
+
+Notation key: `proofs+domain@metacode.biz`
+
+Notation value: Domain name to check, it should contain a `/.well-known/keybase.txt` file that contains the fingerprint prefixed with `"fingerprint": "` (Keybase by default adds this).
+
+Example: https://metacode.biz/.well-known/keybase.txt
