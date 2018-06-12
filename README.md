@@ -96,3 +96,15 @@ Notation key: `proofs+domain@metacode.biz`
 Notation value: Domain name to check, it should contain a `/.well-known/keybase.txt` file that contains the fingerprint prefixed with `"fingerprint": "` (Keybase by default adds this).
 
 Example: https://metacode.biz/.well-known/keybase.txt
+
+### Mastodon/ActivityPub account
+
+This will check for an extended property `OpenPGP` that has a value of full lowercase fingerprint (can be configured in Mastodon settings).
+
+User ID: `acct` URI scheme, as used in WebFinger, e.g. `acct:wiktor@mastodon.social`
+
+Notation key: `proofs+activitypub@metacode.biz`
+
+Notation value: Domain name, must be the same as in `acct` URI.
+
+Example: https://mastodon.social/@wiktor

@@ -126,5 +126,49 @@
             ["concat"],
             ["contains"]
         ]
+    },
+    {
+        "notation": "proofs+activitypub@metacode.biz",
+        "verification": [
+            "https://",
+            ["load", "VALUE"],
+            ["concat"],
+            "/.well-known/webfinger?resource=",
+            ["concat"],
+            ["load", "USERID"],
+            ["concat"],
+            ["fetch", "json"],
+            ["extract", "links"],
+            ["any", [
+                ["duplicate"],
+                ["extract", "rel"],
+                "self",
+                ["equals"],
+                ["verify"],
+                ["duplicate"],
+                ["extract", "type"],
+                "application/activity+json",
+                ["equals"],
+                ["verify"],
+                ["extract", "href"],
+                ["fetch", "json"],
+                ["extract", "attachment"],
+                ["any", [
+                    ["duplicate"],
+                    ["extract", "type"],
+                    "PropertyValue",
+                    ["equals"],
+                    ["verify"],
+                    ["duplicate"],
+                    ["extract", "name"],
+                    "OpenPGP",
+                    ["equals"],
+                    ["verify"],
+                    ["extract", "value"],
+                    ["load", "FINGERPRINT"],
+                    ["equals"]
+                ]]
+            ]]
+        ]
     }
 ]

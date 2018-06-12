@@ -74,16 +74,23 @@ function findMatches(userId, notationKey) {
     return matches;
 }
 
-function fetchResource(url_, bearer) {
+function fetchResource(url_, bearer, type) {
   return new Promise((resolve, reject) => {
       const options = url.parse(url_);
       options.headers = {'User-Agent': 'Distributed IDs verification client'};
       if (bearer) {
           options.headers.Authorization = 'Bearer ' + bearer;
       }
+      if (type === 'json') {
+          options.headers.Accept = 'application/json';
+      }
     var req = https.request(options, function(res) {
         res.setEncoding('utf8');
         let data = '';
+        if (res.statusCode >= 300 && res.statusCode < 400) {
+            resolve(fetchResource(res.headers.location, bearer, type));
+            return;
+        }
         if (res.statusCode !== 200) {
             reject('Response: ' + res.statusCode);
         }
@@ -96,11 +103,10 @@ function fetchResource(url_, bearer) {
   });
 }
 
-async function runTopVerification(script, bindings) {
+async function runTopVerification(script, bindings, stack = []) {
     try {
-        return await runVerification(script, bindings, []);
+        return await runVerification(script, bindings, stack);
     } catch (e) {
-        console.error(e);
         return false;
     }
 }
@@ -109,7 +115,7 @@ async function runVerification(script, bindings, stack) {
     const ops = {
         async fetch(type, bearer) {
             const url = stack.pop();
-            let content = await fetchResource(url, bearer);
+            let content = await fetchResource(url, bearer, type);
             if (type === 'json') {
                 stack.push(JSON.parse(content));
             } else if (type === 'text') {
@@ -135,7 +141,7 @@ async function runVerification(script, bindings, stack) {
                 values = Object.values(values);
             }
             for (const element of values) {
-                if (await runVerification(script, bindings, [ element ])) {
+                if (await runTopVerification(script, bindings, [ element ])) {
                     result = true;
                 }
             }
