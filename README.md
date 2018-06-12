@@ -14,11 +14,17 @@ See `samples` directory for a pre-parsed User IDs and notations.
 
 You can try the samples by using:
 
-    cat samples/reddit-identity.json | node index.js
+```
+$ cat samples/activitypub-identity.json | node index.js
+Key: 653909a2f0e37c106f5faf546c8857e0d8e8f074
+  ✓ acct:wiktor@mastodon.social
+```
 
 Verification of real keys:
 
-    gpg --export D8E8F074 | node index.js
+```
+$ gpg --export D8E8F074 | node index.js
+```
 
 ## Identities
 
