@@ -126,3 +126,30 @@ Notation key: `proofs+dns@metacode.biz`
 Notation value: Domain name, must be the same as in `dns` URI.
 
 Example: https://dns.google.com/resolve?name=metacode.biz&type=TXT
+
+## Prior art
+
+This design is largely based on [Linked Identities for OpenPGP][LID] draft with just
+a few differences:
+
+  - instead of using private/experimental User Attributes this proposal uses URI-formatted
+    User IDs and, for additional data, self-signature notations.
+    UIDs and notations can be manually inserted using just `gpg`, additionally
+    they have a good fallback (if a program does not support validation
+    it will still show the link to user's profile page),
+  - specifies rules of validation in executable, stack-based language so that any
+    implementations of this design can reuse the same validation rules.
+
+## Known issues
+
+There are several issues with the current design that need to be addresses:
+
+  - some identities (e.g. Mastodon, DNS) would not need signature notations,
+    this is a limitation of current validation language,
+  - it could be better if notations specified full URLs to proofs (e.g. gist
+    URLs) instead of bare identifiers,
+  - some proofs have additional metadata, e.g. Bitcoin Timestamp could print
+    the date of the stamp,
+  - some rules re-use what keybase already defines.
+
+[LID]: https://tools.ietf.org/html/draft-vb-openpgp-linked-ids-01
