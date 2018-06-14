@@ -121,7 +121,7 @@ This check verifies if there is a `TXT` record with contents `openpgp4fpr:finger
 
 User ID: `dns` URI scheme, e.g. `dns:metacode.biz`
 
-Notation key: `proofs+activitypub@metacode.biz`
+Notation key: `proofs+dns@metacode.biz`
 
 Notation value: Domain name, must be the same as in `dns` URI.
 
