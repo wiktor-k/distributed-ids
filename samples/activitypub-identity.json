@@ -2,10 +2,7 @@
     "fingerprint": "653909a2f0e37c106f5faf546c8857e0d8e8f074",
     "userIds": [
       {
-        "userId": "acct:wiktor@mastodon.social",
-        "notations": {
-          "proofs+activitypub@metacode.biz": "mastodon.social"
-        }
+        "userId": "acct:wiktor@mastodon.social"
       }
     ]
   }

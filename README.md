@@ -51,9 +51,7 @@ Example: https://gist.github.com/wiktor-k/389d589dd19250e1f9a42bc3d5d40c16
 
 User ID: `https://news.ycombinator.com/user?id=name`
 
-Notation key: proofs+hn@metacode.biz
-
-Notation value: user name on Hacker News
+Notations not needed.
 
 Example: https://news.ycombinator.com/user?id=fasd
 
@@ -109,9 +107,7 @@ This will check for an extended property `OpenPGP` that has a value of full lowe
 
 User ID: `acct` URI scheme, as used in WebFinger, e.g. `acct:wiktor@mastodon.social`
 
-Notation key: `proofs+activitypub@metacode.biz`
-
-Notation value: Domain name, must be the same as in `acct` URI.
+Notations not needed.
 
 Example: https://mastodon.social/@wiktor
 
@@ -121,9 +117,7 @@ This check verifies if there is a `TXT` record with contents `openpgp4fpr:finger
 
 User ID: `dns` URI scheme, e.g. `dns:metacode.biz`
 
-Notation key: `proofs+dns@metacode.biz`
-
-Notation value: Domain name, must be the same as in `dns` URI.
+Notations not needed.
 
 Example: https://dns.google.com/resolve?name=metacode.biz&type=TXT
 
@@ -144,8 +138,6 @@ a few differences:
 
 There are several issues with the current design that need to be addresses:
 
-  - some identities (e.g. Mastodon, DNS) would not need signature notations,
-    this is a limitation of current validation language,
   - it could be better if notations specified full URLs to proofs (e.g. gist
     URLs) instead of bare identifiers,
   - some proofs have additional metadata, e.g. Bitcoin Timestamp could print

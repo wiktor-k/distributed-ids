@@ -2,10 +2,7 @@
     "fingerprint": "653909a2f0e37c106f5faf546c8857e0d8e8f074",
     "userIds": [
       {
-        "userId": "dns:metacode.biz",
-        "notations": {
-          "proofs+dns@metacode.biz": "metacode.biz"
-        }
+        "userId": "dns:metacode.biz"
       }
     ]
   }

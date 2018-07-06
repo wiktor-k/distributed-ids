@@ -1,0 +1,14 @@
+[
+    {
+        "match": "https://news\\.ycombinator\\.com/user\\?id=([A-Za-z0-9]+)",
+        "notation": "proofs+hn@metacode.biz"
+    },
+    {
+        "match": "acct:[^@]+@(.+)",
+        "notation": "proofs+activitypub@metacode.biz"
+    },
+    {
+        "match": "dns:(.+)",
+        "notation": "proofs+dns@metacode.biz"
+    }
+]

@@ -1,6 +1,7 @@
 const openpgp = require('openpgp');
 const https = require('https');
 const rules = require('./rules.json');
+const defaultNotations = require('./default-notations.json');
 const url = require('url');
 
 function readStdinToBuffer() {
@@ -43,6 +44,19 @@ function parseKey(buffer) {
   };
 }
 
+function getDefaultNotation(identity) {
+    for (const notation of defaultNotations) {
+        const re = new RegExp(notation.match);
+        const matches = re.exec(identity);
+        if (matches) {
+            return {
+                [notation.notation]: matches[1]
+            };
+        }
+    }
+    return {};
+}
+
 async function verifyIdentifies() {
   const good = '\x1b[32;1m✓\x1b[0m';
   const bad = '\x1b[31;1m✗\x1b[0m';
@@ -50,11 +64,12 @@ async function verifyIdentifies() {
   const identities = key[0] === '{'.charCodeAt(0) ? JSON.parse(key.toString('utf-8')) : parseKey(key);
   console.log(`Key: ${identities.fingerprint}`);
   for (const identity of identities.userIds) {
-    for (const notationKey in identity.notations) {
+    const notations = Object.assign({}, getDefaultNotation(identity.userId), identity.notations);
+    for (const notationKey in notations) {
       const matches = findMatches(identity.userId, notationKey);
       for (const match of matches) {
         const success = await runTopVerification(match.verification, {
-        VALUE: identity.notations[notationKey],
+        VALUE: notations[notationKey],
         FINGERPRINT: identities.fingerprint,
         USERID: identity.userId
         });

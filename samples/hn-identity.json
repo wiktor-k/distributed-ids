@@ -2,10 +2,7 @@
   "fingerprint": "c6045c813887b77c2dff97a57c56acfe947897d8",
   "userIds": [
     {
-      "userId": "https://news.ycombinator.com/user?id=fasd",
-      "notations": {
-        "proofs+hn@metacode.biz": "fasd"
-      }
+      "userId": "https://news.ycombinator.com/user?id=fasd"
     }
   ]
 }
