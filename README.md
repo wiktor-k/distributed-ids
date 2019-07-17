@@ -1,5 +1,9 @@
 # Distributed IDs
 
+## Note: This project has been replaced by https://github.com/wiktor-k/openpgp-proofs
+
+## The repository here is left as an archive for early design
+
 This is a proof of concept code for verifying distributed identities
 using OpenPGP keys.
 
